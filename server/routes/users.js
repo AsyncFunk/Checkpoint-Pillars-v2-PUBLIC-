@@ -18,6 +18,19 @@ const {
 
 // Add your routes here:
 
+router.get('/', async (req, res, next) => {
+  try {
+    let users = await User.findAll();
+    users = users.filter((user) => {
+      let testTheQuery = new RegExp(`(${req.query.name})`, `i`);
+      return testTheQuery.test(user.name);
+    });
+    res.status(200).send(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/unassigned', async (req, res, next) => {
   try {
     const response = await User.findUnassignedStudents();

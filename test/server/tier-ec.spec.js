@@ -108,7 +108,7 @@ describe('Extra Credit: CSS, Instance Methods, Many-to-Many, Query Params', () =
     });
 
     describe('Query Params', () => {
-      xit('GET /api/users?name=username responds with all users matching username', async () => {
+      it('GET /api/users?name=username responds with all users matching username', async () => {
         const response = await app.get(`/api/users?name=ed`);
         expect(response.status).to.equal(200);
         expect(response.body).to.be.an('array');
